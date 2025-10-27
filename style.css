@@ -1,0 +1,21 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  padding: 2rem;
+}
+
+form input {
+  padding: 0.5rem;
+  width: 200px;
+  font-size: 1rem;
+}
+
+#qrcode {
+  margin: 1rem auto;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}

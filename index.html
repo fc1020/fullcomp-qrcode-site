@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QRコード生成サイト</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>QRコードを作ろう！</h1>
+
+  <form id="qrForm">
+    <label>氏名：</label>
+    <input type="text" id="nameInput" placeholder="氏名" required><br><br>
+
+    <label>住所：</label>
+    <input type="text" id="addressInput" placeholder="住所" required><br><br>
+
+    <label>電話番号：</label>
+    <input type="text" id="phoneInput" placeholder="電話番号"><br><br>
+
+    <button type="submit">QRコード生成</button>
+  </form>
+
+  <div id="qrcode"></div>
+  <button id="downloadBtn" style="display:none;">画像をダウンロード</button>
+
+  <!-- 新しいライブラリ -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
