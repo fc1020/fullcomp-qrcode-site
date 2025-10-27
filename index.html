@@ -1,32 +1,58 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QRコード生成サイト</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>フルコンプ公式 QRコード生成サイト</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>QRコードを作ろう！</h1>
+	<header>
+		<img src="images/logo.jpg" alt="店舗ロゴ" class="logo">
+		<h1>フルコンプ買取用QRコード生成ページ</h1>
+		<p class="subtext">このサイトでは入力された情報を保存しません。</p>
+	</header>
 
-  <form id="qrForm">
-    <label>氏名：</label>
-    <input type="text" id="nameInput" placeholder="氏名" required><br><br>
+	<main>
+	<form id="qrForm">
+		<div class="form-group">
+		<label for="nameInput">氏名</label>
+		<input type="text" id="nameInput" placeholder="氏名" required />
+		</div>
 
-    <label>住所：</label>
-    <input type="text" id="addressInput" placeholder="住所" required><br><br>
+		<div class="form-group">
+		<label for="addressInput">住所</label>
+		<input type="text" id="addressInput" placeholder="住所" required />
+		</div>
 
-    <label>電話番号：</label>
-    <input type="text" id="phoneInput" placeholder="電話番号"><br><br>
+		<div class="form-group">
+		<label for="phoneInput">電話番号<br>
+			<span class="note">（半角数字で入力、ハイフン等は不要です）</span>
+		</label>
+		<input type="tel" id="phoneInput"
+				placeholder="電話番号"
+    			inputmode="numeric"
+    			pattern="[0-9]*"/>
+		</div>
 
-    <button type="submit">QRコード生成</button>
-  </form>
+		<button type="submit">QRコード生成</button>
+	</form>
 
-  <div id="qrcode"></div>
-  <button id="downloadBtn" style="display:none;">画像をダウンロード</button>
+	<div id="qrcode"></div>
+	<button id="downloadBtn" style="display:none;">画像をダウンロード</button>
+	</main>
 
-  <!-- 新しいライブラリ -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-  <script src="script.js"></script>
+
+	<footer style="margin-top: 2rem; font-size: 0.9rem; color: gray;">
+		<!-- <p>このサイトでは、入力された情報を保存・送信することはありません。</p> -->
+		<p>QRコードはお使いのブラウザ上で生成されます。</p>
+		<p>© 2025	/ Hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
+	</footer>
+
+
+	<!-- 新しいライブラリ -->
+	<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+	<script src="script.js"></script>
+	
 </body>
 </html>
