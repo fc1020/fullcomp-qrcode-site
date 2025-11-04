@@ -14,57 +14,108 @@
 	</header>
 
 	<main>
-	<form id="qrForm">
+	<form id="qrForm" autocomplete="on">
 		<div class="form-group horizontal">
-		<div class="input-pair">
-		<label for="lastNameInput">姓</label>
-		<input type="text" id="lastNameInput" placeholder="姓" />
-		</div>
-		<div class="input-pair">
-		<label for="firstNameInput">名</label>
-		<input type="text" id="firstNameInput" placeholder="名" />
-		</div>
+			<div class="input-pair">
+			<label for="lastNameInput">姓</label>
+			<input
+				type="text"
+				id="lastNameInput"
+				name="familyName"
+				placeholder="姓"
+				autocomplete="family-name"
+			/>
+			</div>
+			<div class="input-pair">
+			<label for="firstNameInput">名</label>
+			<input
+				type="text"
+				id="firstNameInput"
+				name="givenName"
+				placeholder="名"
+				autocomplete="given-name"
+			/>
+			</div>
 		</div>
 
 		<div class="form-group horizontal">
-		<div class="input-pair">
-		<label for="lastNameKanaInput">姓(フリガナ)</label>
-		<input type="text" id="lastNameKanaInput" placeholder="姓(フリガナ)" pattern="[\u30A0-\u30FF\uFF65-\uFF9F]+"/>
-		</div>
-		<div class="input-pair">
-		<label for="firstNameKanaInput">名(フリガナ)</label>
-		<input type="text" id="firstNameKanaInput" placeholder="名(フリガナ)" pattern="[\u30A0-\u30FF\uFF65-\uFF9F]+"/>
-		</div>
+			<div class="input-pair">
+			<label for="lastNameKanaInput">姓(フリガナ)</label>
+			<input
+				type="text"
+				id="lastNameKanaInput"
+				name="familyNameKana"
+				placeholder="姓(フリガナ)"
+				pattern="[\u30A0-\u30FF\uFF65-\uFF9F]+"
+				autocomplete="off"
+				inputmode="kana"
+			/>
+			</div>
+			<div class="input-pair">
+			<label for="firstNameKanaInput">名(フリガナ)</label>
+			<input
+				type="text"
+				id="firstNameKanaInput"
+				name="givenNameKana"
+				placeholder="名(フリガナ)"
+				pattern="[\u30A0-\u30FF\uFF65-\uFF9F]+"
+				autocomplete="off"
+				inputmode="kana"
+			/>
+			</div>
 		</div>
 
 		<div class="form-group vertical">
-		<label for="addressInput">住所</label>
-		<input type="text" id="address1Input" placeholder="都道府県" />
-		<input type="text" id="address2Input" placeholder="市区町村・番地・建物名など" />
+			<label for="address1Input">住所</label>
+			<input
+			type="text"
+			id="address1Input"
+			name="addressLevel1"
+			placeholder="都道府県"
+			autocomplete="address-level1"
+			/>
+			<input
+			type="text"
+			id="address2Input"
+			name="addressLevel2"
+			placeholder="市区町村・番地・建物名など"
+			autocomplete="address-line1"
+			/>
 		</div>
 
 		<div class="form-group vertical">
-		<label for="birthdayInput">生年月日<br>
+			<label for="birthdayInput">生年月日<br>
 			<span class="note">（半角数字、2001年4月1日の場合は20010401と入力）</span>
-		</label>
-		<input type="tel" id="birthdayInput"
-				placeholder="生年月日"
-    			inputmode="numeric"
-    			pattern="[0-9]{8}"/>
+			</label>
+			<input
+			type="tel"
+			id="birthdayInput"
+			name="birthdate"
+			placeholder="生年月日"
+			inputmode="numeric"
+			pattern="[0-9]{8}"
+			autocomplete="bday"
+			/>
 		</div>
 
 		<div class="form-group vertical">
-		<label for="phoneInput">電話番号<br>
+			<label for="phoneInput">電話番号<br>
 			<span class="note">（半角数字で入力）</span>
-		</label>
-		<input type="tel" id="phoneInput"
-				placeholder="電話番号"
-    			inputmode="numeric"
-    			pattern="[-－0-9]+"/>
+			</label>
+			<input
+			type="tel"
+			id="phoneInput"
+			name="phone"
+			placeholder="電話番号"
+			inputmode="numeric"
+			pattern="[-－0-9]+"
+			autocomplete="tel"
+			/>
 		</div>
 
 		<button type="submit">QRコード生成</button>
 	</form>
+
 
 	<div id="qrcode"></div>
 	<button id="downloadBtn" style="display:none;">画像をダウンロード</button>
