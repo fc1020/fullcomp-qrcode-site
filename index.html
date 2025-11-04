@@ -15,24 +15,52 @@
 
 	<main>
 	<form id="qrForm">
-		<div class="form-group">
-		<label for="nameInput">氏名</label>
-		<input type="text" id="nameInput" placeholder="氏名" required />
+		<div class="form-group horizontal">
+		<div class="input-pair">
+		<label for="lastNameInput">姓</label>
+		<input type="text" id="lastNameInput" placeholder="姓" />
+		</div>
+		<div class="input-pair">
+		<label for="firstNameInput">名</label>
+		<input type="text" id="firstNameInput" placeholder="名" />
+		</div>
 		</div>
 
-		<div class="form-group">
+		<div class="form-group horizontal">
+		<div class="input-pair">
+		<label for="lastNameKanaInput">姓(フリガナ)</label>
+		<input type="text" id="lastNameKanaInput" placeholder="姓(フリガナ)" pattern="[\u30A0-\u30FF\uFF65-\uFF9F]+"/>
+		</div>
+		<div class="input-pair">
+		<label for="firstNameKanaInput">名(フリガナ)</label>
+		<input type="text" id="firstNameKanaInput" placeholder="名(フリガナ)" pattern="[\u30A0-\u30FF\uFF65-\uFF9F]+"/>
+		</div>
+		</div>
+
+		<div class="form-group vertical">
 		<label for="addressInput">住所</label>
-		<input type="text" id="addressInput" placeholder="住所" required />
+		<input type="text" id="address1Input" placeholder="都道府県" />
+		<input type="text" id="address2Input" placeholder="市区町村・番地・建物名など" />
 		</div>
 
-		<div class="form-group">
+		<div class="form-group vertical">
+		<label for="birthdayInput">生年月日<br>
+			<span class="note">（半角数字、2001年4月1日の場合は20010401と入力）</span>
+		</label>
+		<input type="tel" id="birthdayInput"
+				placeholder="生年月日"
+    			inputmode="numeric"
+    			pattern="[0-9]{8}"/>
+		</div>
+
+		<div class="form-group vertical">
 		<label for="phoneInput">電話番号<br>
-			<span class="note">（半角数字で入力、ハイフン等は不要です）</span>
+			<span class="note">（半角数字で入力）</span>
 		</label>
 		<input type="tel" id="phoneInput"
 				placeholder="電話番号"
     			inputmode="numeric"
-    			pattern="[0-9]*"/>
+    			pattern="[-－0-9]+"/>
 		</div>
 
 		<button type="submit">QRコード生成</button>
@@ -50,9 +78,9 @@
 	</footer>
 
 
-	<!-- 新しいライブラリ -->
 	<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 	<script src="script.js"></script>
+
 	
 </body>
 </html>

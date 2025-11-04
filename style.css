@@ -1,102 +1,138 @@
+/* 全体 */
 body {
   font-family: "Noto Sans JP", sans-serif;
   margin: 0;
   padding: 0;
-  background: #fafafa;
+  background: #f0f2f5;
   color: #333;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
 }
 
+/* ヘッダー */
 header {
-  margin-top: 2rem;
+  text-align: center;
+  margin: 2rem 0;
 }
 
 .logo {
-  width: 100px;
+  width: 120px;
   height: auto;
   margin-bottom: 1rem;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
 h1 {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   margin-bottom: 0.3rem;
+  font-weight: 600;
 }
 
 .subtext {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #666;
   margin-bottom: 2rem;
 }
 
+/* メインカード */
 main {
   width: 90%;
-  max-width: 400px;
+  max-width: 450px;
   background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
-.form-group label {
-  display: block;
+
+/* フォーム */
+.form-group.horizontal {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input-pair {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+label {
   font-weight: 500;
   margin-bottom: 0.3rem;
   color: #333;
 }
 
-.form-group .note {
-  font-size: 0.85rem;
-  color: #777;
+.note {
+  font-size: 0.8rem;
+  color: #999;
 }
 
 form input {
-  width: 70%;
-  padding: 0.8rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box; /* 追加 */
 }
 
+form input:focus {
+  border-color: #2a7ae4;
+  box-shadow: 0 0 0 3px rgba(42,122,228,0.2);
+}
+
+/* ボタン */
 button {
   background-color: #2a7ae4;
   color: white;
   border: none;
-  padding: 0.8rem 1rem;
-  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
   font-size: 1rem;
   cursor: pointer;
-  width: 100%;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
 }
 
 button:hover {
   background-color: #1f5fb8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* QRコード */
 #qrcode {
   margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
 }
 
+/* フッター */
 footer {
   margin: 2rem 0;
   font-size: 0.8rem;
   color: #777;
+  text-align: center;
 }
 
-/* スマホ用最適化 */
-@media (max-width: 600px) {
-  body {
-    font-size: 16px;
-  }
-
-  h1 {
-    font-size: 1.1rem;
-  }
-
-  main {
-    padding: 1rem;
+/* レスポンシブ */
+@media (max-width: 500px) {
+  .form-group.horizontal {
+    flex-direction: column;
   }
 }
