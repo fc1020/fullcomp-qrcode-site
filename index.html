@@ -113,18 +113,52 @@
 			/>
 		</div>
 
+		<div class="form-group vertical">
+			<label>職業</label>
+			<div class="radio-group buttons" id="occupationGroup">
+				<input type="radio" name="occupation" id="job1" value="会社員">
+				<label for="job1">会社員</label>
+
+				<input type="radio" name="occupation" id="job2" value="公務員">
+				<label for="job2">公務員</label>
+
+				<input type="radio" name="occupation" id="job3" value="自営業">
+				<label for="job3">自営業</label>
+
+				<input type="radio" name="occupation" id="job4" value="フリーター">
+				<label for="job4">フリーター</label>
+
+				<input type="radio" name="occupation" id="job5" value="学生">
+				<label for="job5">学生</label>
+
+				<input type="radio" name="occupation" id="job6" value="その他">
+				<label for="job6">その他</label>
+			</div>
+
+			<!-- 「その他」選択時のみ表示 -->
+			<input
+				type="text"
+				id="occupationOther"
+				name="occupationOther"
+				placeholder="職業を入力"
+				style="display:none; margin-top:0.8rem;"
+			/>
+		</div>
+
+
 		<button type="submit">QRコード生成</button>
 	</form>
 
 
 	<div id="qrcode"></div>
 	<button id="downloadBtn" style="display:none;">画像をダウンロード</button>
+	<div id="qrText" style="display:none; word-break: break-all; margin-top: 1rem;"></div>
+	
 	</main>
 
 
 	<footer style="margin-top: 2rem; font-size: 0.9rem; color: gray;">
-		<!-- <p>このサイトでは、入力された情報を保存・送信することはありません。</p> -->
-		<p>QRコードはお使いのブラウザ上で生成されます。</p>
+		<p>QRコードはお使いのブラウザ上で生成されます。入力された情報を外部へ保存・送信することはありません。</p>
 		<p>© 2025	/ Hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
 	</footer>
 

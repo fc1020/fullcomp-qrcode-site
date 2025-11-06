@@ -39,7 +39,7 @@ h1 {
 /* メインカード */
 main {
   width: 90%;
-  max-width: 450px;
+  max-width: 640px;
   background: white;
   padding: 2rem;
   border-radius: 16px;
@@ -95,6 +95,45 @@ form input:focus {
   border-color: #2a7ae4;
   box-shadow: 0 0 0 3px rgba(42,122,228,0.2);
 }
+
+/* ラジオボタン */
+/* ボタン風のラジオ選択肢 */
+.radio-group.buttons {
+  display: flex;
+  flex-wrap: wrap; /* 横並び＋自動折り返し */
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.radio-group.buttons input[type="radio"] {
+  display: none; /* デフォルトの丸ボタンを非表示 */
+}
+
+.radio-group.buttons label {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #ccc;
+  border-radius: 1.2rem;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.radio-group.buttons label:hover {
+  border-color: #0078d4;
+  background-color: #eef6ff;
+}
+
+.radio-group.buttons input[type="radio"]:checked + label {
+  border-color: #0078d4;
+  background-color: #0078d4;
+  color: white;
+  font-weight: bold;
+}
+
 
 /* ボタン */
 button {
