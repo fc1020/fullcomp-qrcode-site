@@ -81,7 +81,7 @@ async function generateQR(text) {
 
 	// QRコード本体生成
 	await QRCode.toCanvas(qrCanvas, text, {
-		width: 640,
+		width: 500,
 		margin: 6, // セーフゾーン拡大
 		errorCorrectionLevel: "M" // 復元性高め
 	});
@@ -94,52 +94,63 @@ async function generateQR(text) {
 
 	const label = "お客様が入力された個人情報が含まれています、お取り扱いには十分ご注意ください.\nこちらのQRコードは、フルコンプ各店で買取時に使用するものです.使用できる店舗は以下の通りです.\n・フルコンプ秋葉原店\n・フルコンプ秋葉原ラジオ会館店\n・フルコンプ池袋店\n・フルコンプ渋谷東口店\n・フルコンプ横浜店\n・フルコンプ川崎店\n・フルコンプ本厚木店\n・フルコンプ千葉店";
 	const lines = label.split(/\n/);
-	const lineHeight = 24; // 行間の高さ
+	const lineHeight = 20; // 行間の高さ
 	const totalTextHeight = lines.length * lineHeight;
 	
-	const padding = 40;
-	const logoHeight = 60;
-	const textHeight = 120;
+	// 追加要素の高さ
+	const padding = 60;
+	const logoHeight = 90;
+	const headerHeight = 30; // ロゴ下見出し
+	const footerHeight = 20; // 作成日時
 	const qrSize = qrCanvas.width;
 
-	const totalHeight = logoHeight + padding + qrSize + padding + totalTextHeight + padding;
+	// キャンバス全体サイズ
+	const totalHeight = logoHeight + padding + headerHeight + qrSize + padding + totalTextHeight + padding + footerHeight;
 	const totalWidth = qrSize + padding * 2;
 
 	const finalCanvas = document.createElement("canvas");
 	finalCanvas.width = totalWidth;
 	finalCanvas.height = totalHeight;
-	finalCanvas.style.width = `${totalWidth}px`;
-	finalCanvas.style.height = `${totalHeight}px`;
 	const ctx = finalCanvas.getContext("2d");
 
 	// 背景白
 	ctx.fillStyle = "#fff";
 	ctx.fillRect(0, 0, totalWidth, totalHeight);
 
-	// 上部ロゴ描画
+	// 上部ロゴ
 	const logoX = (totalWidth - logo.width * (logoHeight / logo.height)) / 2;
-	ctx.drawImage(logo, logoX, 0, logo.width * (logoHeight / logo.height), logoHeight);
+	ctx.drawImage(logo, logoX, 10, logo.width * (logoHeight / logo.height), logoHeight);
 
-	// QRコード描画
-	ctx.drawImage(qrCanvas, padding, logoHeight + padding, qrSize, qrSize);
+	// ロゴ下 見出し
+	ctx.fillStyle = "#f00";
+	ctx.font = "bold 24px sans-serif";
+	ctx.textAlign = "center";
+	ctx.fillText("買取情報QRコード", totalWidth / 2, logoHeight + padding / 2);
+
+	// QRコード
+	ctx.drawImage(qrCanvas, padding, logoHeight + padding + headerHeight, qrSize, qrSize);
 
 	// 下部テキスト
 	ctx.fillStyle = "#999";
-	ctx.font = "bold 14px sans-serif";
+	ctx.font = "bold 12px sans-serif";
 	ctx.textAlign = "center";
-	const startY = logoHeight + padding + qrSize + textHeight / 1.5;
-
+	const startY = logoHeight + padding + headerHeight + qrSize + totalTextHeight / 2;
 	lines.forEach((line, i) => {
-	ctx.fillText(line, totalWidth / 2, startY + i * lineHeight);
+		ctx.fillText(line, totalWidth / 2, startY + i * lineHeight);
 	});
-	//ctx.fillText(label, totalWidth / 2, logoHeight + padding + qrSize + textHeight / 1.5);
+
+	// 最下部 作成日時
+	ctx.fillStyle = "#999";
+	ctx.font = "10px sans-serif";
+	const dateStr = new Date().toLocaleString();
+	ctx.fillText(dateStr, totalWidth / 2, totalHeight - padding / 2);
 
 	// 表示
 	const container = document.getElementById("qrcode");
 	container.innerHTML = "";
 	container.appendChild(finalCanvas);
 
-	//呼び出し元に返す
+	// 呼び出し元に返す
 	return finalCanvas;
 }
 
@@ -247,12 +258,12 @@ document.getElementById("qrForm").addEventListener("submit", async (e) => {
 		//await QRCode.toCanvas(canvas, base64Payload, { width: 640, errorCorrectionLevel: "M", margin: 8 });
 		qrContainer.appendChild(canvas);
 
-
+/*
 		// 文字列表示（デバッグ用）
 		const textDiv = document.getElementById("qrText");
 		textDiv.textContent = base64Payload;
 		textDiv.style.display = "block"; // 表示
-
+*/
 
 		// ダウンロードボタン
 		const downloadBtn = document.getElementById("downloadBtn");
