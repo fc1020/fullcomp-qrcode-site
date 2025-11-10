@@ -182,6 +182,7 @@ function recordGeneration() {
 // --------------------
 // デバッグ用：フォームに初期値を設定
 // --------------------
+/*
 window.addEventListener("DOMContentLoaded", () => {
 	document.getElementById("lastNameInput").value = "山田";
 	document.getElementById("firstNameInput").value = "太郎";
@@ -192,6 +193,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	document.getElementById("birthdayInput").value = "19950101";
 	document.getElementById("phoneInput").value = "09012345678";
 });
+*/
 // --------------------
 // フォーム送信処理
 // --------------------
