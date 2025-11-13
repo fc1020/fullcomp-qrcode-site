@@ -188,9 +188,9 @@ window.addEventListener("DOMContentLoaded", () => {
 	document.getElementById("firstNameInput").value = "太郎";
 	document.getElementById("lastNameKanaInput").value = "ヤマダ";
 	document.getElementById("firstNameKanaInput").value = "タロウ";
-	document.getElementById("address1Input").value = "和歌山県";
+	document.getElementById("address1Input").value = "東京都";
 	document.getElementById("address2Input").value = "千代田区外神田1-15-16 秋葉原ラジオ会館 9F";
-	document.getElementById("birthdayInput").value = "19950101";
+	document.getElementById("birthdayInput").value = "20250101";
 	document.getElementById("phoneInput").value = "09012345678";
 });
 */

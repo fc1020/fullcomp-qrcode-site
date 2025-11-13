@@ -6,166 +6,190 @@
   <title>フルコンプ公式 QRコード生成サイト</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const agreement = document.getElementById("agreement");
+  const mainContent = document.querySelector("main");
+  const checkbox = document.getElementById("agreeCheck");
+  const button = document.getElementById("agreeBtn");
+  const scrollBox = document.getElementById("agreementText");
+
+  // 最初はメイン非表示
+  mainContent.style.display = "none";
+
+  // スクロール監視（最後まで読んだらチェック可能に）
+  scrollBox.addEventListener("scroll", () => {
+    const atBottom = scrollBox.scrollTop + scrollBox.clientHeight >= scrollBox.scrollHeight - 5;
+    if (atBottom) {
+      checkbox.disabled = false;
+    }
+  });
+
+  // チェックボックスがONでボタン有効化
+  checkbox.addEventListener("change", () => {
+    button.disabled = !checkbox.checked;
+  });
+
+  // 同意ボタン押下で同意画面を非表示 → メイン表示
+  button.addEventListener("click", () => {
+    agreement.style.display = "none";
+    mainContent.style.display = "block";
+    window.scrollTo(0, 0);
+  });
+
+  // 最初はチェックできないように無効化
+  checkbox.disabled = true;
+});
+</script>
 <body>
-	<header>
-		<img src="images/logo.jpg" alt="店舗ロゴ" class="logo">
-		<h1>フルコンプ買取用QRコード生成ページ</h1>
-		<p class="subtext">このサイトでは入力された情報を保存しません。</p>
-	</header>
 
-	<main>
-	<form id="qrForm" autocomplete="on">
-		<div class="form-group horizontal">
-			<div class="input-pair">
-			<label for="lastNameInput">姓</label>
-			<input
-				type="text"
-				id="lastNameInput"
-				name="familyName"
-				placeholder="姓"
-				autocomplete="family-name"
-			/>
-			</div>
-			<div class="input-pair">
-			<label for="firstNameInput">名</label>
-			<input
-				type="text"
-				id="firstNameInput"
-				name="givenName"
-				placeholder="名"
-				autocomplete="given-name"
-			/>
-			</div>
-		</div>
+  <!-- Agreement Section -->
+  <div id="agreement" style="text-align:center; max-width:640px; margin:4rem auto; background:white; padding:2rem; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,0.1);">
+    <h2>ご利用前のご確認</h2>
+    <p style="text-align:center; line-height:1.7;">
+      このサイトでは、入力された内容から個人情報を含むQRコードを生成します。<br>
+      情報はブラウザ内でのみ処理され、外部へ送信・保存されることはありません。<br>
+	  <br>
+	</p>
+	<h2>買取申込書/承諾書について</h2>
+	<p style="text-align:center; line-height:1.7;">
+      このサイトのQRコードを元に、店舗で買取承諾書を印刷します。<br>
+	  上記のご利用前のご確認に加え、買取承諾書の同意事項についてもご確認をお願いします。<br>
+	  <br>
+      以下、買取承諾書より抜粋
+    </p>
 
-		<div class="form-group horizontal">
-			<div class="input-pair">
-			<label for="lastNameKanaInput">姓(フリガナ)</label>
-			<input
-				type="text"
-				id="lastNameKanaInput"
-				name="familyNameKana"
-				placeholder="姓(フリガナ)"
-				pattern="[\u30A0-\u30FF\uFF65-\uFF9F]+"
-				autocomplete="off"
-				inputmode="kana"
-			/>
-			</div>
-			<div class="input-pair">
-			<label for="firstNameKanaInput">名(フリガナ)</label>
-			<input
-				type="text"
-				id="firstNameKanaInput"
-				name="givenNameKana"
-				placeholder="名(フリガナ)"
-				pattern="[\u30A0-\u30FF\uFF65-\uFF9F]+"
-				autocomplete="off"
-				inputmode="kana"
-			/>
-			</div>
-		</div>
+<!-- Scrollable Agreement Text -->
+	<div id="agreementText"
+		style="max-height:200px; overflow-y:auto; border:1px solid #ccc; padding:1rem; margin:1rem 0; text-align:left; line-height:1.6; background:#f9f9f9; font-size:0.95rem;">
+	<p>
+	【個人情報の取り扱いについて】<br>
+	1.本承諾書は、法令に基づいてお客様にご記入いただくものであり、ここに記入された内容を、それ以外の目的で使用する事はありません。<br>
+	2.ご記入いただいた個人情報は、厳正な管理の下で安全に保管します。<br>
+	3.ご記入いただいた個人情報は、法令に基づいて個人情報の提供を求められた場合を除き、第三者に提供する事はありません。<br>
+	<br>
+	【注意事項】<br>
+	●買取の際には公的な身分証明書が必要です。マイナンバーカード・運転免許証・学生証・保険証等、公的機関が発行している「氏名・住所・年齢・年齢」が確認出来るもので、住所変更の届出が済んでおり、且つ有効期限内のものに限ります（コピー不可）。<br>
+	●18歳未満のお客様は、保護者の承諾と同意欄の記入、電話確認が必要です。予め連絡がとれるかご確認下さい。連絡がとれない場合は、買取をお断り致します。<br>
+	●小学生以下のお客様は保護者の方が同伴の上、保護者の方はご自身の身分証明書をご持参ください。<br>
+	●申込後の買取は当日中の営業時間内のみ可能です。お預かり出来ませんのでご注意下さい。<br>
+	●当日中に査定が行えない場合は、当社規定により切り分けさせて頂く場合がございます。<br>
+	●模倣品、偽造品、海賊品、無線機等品など不正入手した商品は買取をお断り致します。<br>
+	●買取受付の不正入手が発覚した場合、告発機関宛てに通報を行うことがあります。<br>
+	●買取明細レシートの内容に同意して買取が成立した場合、レシートに名前を記入して頂きます。<br>
+	●買取成立後の取り消し、返品、キャンセルは一切お受けできません。<br>
+	</p>
 
-		<div class="form-group vertical">
-			<label for="address1Input">住所</label>
-			<input
-			type="text"
-			id="address1Input"
-			name="addressLevel1"
-			placeholder="都道府県"
-			autocomplete="address-level1"
-			/>
-			<input
-			type="text"
-			id="address2Input"
-			name="addressLevel2"
-			placeholder="市区町村・番地・建物名など"
-			autocomplete="address-line1"
-			/>
-		</div>
+	</div>
 
-		<div class="form-group vertical">
-			<label for="birthdayInput">生年月日<br>
-			<span class="note">（半角数字、2001年4月1日の場合は20010401と入力）</span>
-			</label>
-			<input
-			type="tel"
-			id="birthdayInput"
-			name="birthdate"
-			placeholder="生年月日"
-			inputmode="numeric"
-			pattern="[0-9]{8}"
-			autocomplete="bday"
-			/>
-		</div>
+    <label style="display:block; margin-top:1.5rem;">
+      <input type="checkbox" id="agreeCheck">
+      同意事項を確認し、同意します。
+    </label>
 
-		<div class="form-group vertical">
-			<label for="phoneInput">電話番号<br>
-			<span class="note">（半角数字で入力）</span>
-			</label>
-			<input
-			type="tel"
-			id="phoneInput"
-			name="phone"
-			placeholder="電話番号"
-			inputmode="numeric"
-			pattern="[\-0-9－]+"
-			autocomplete="tel"
-			/>
-		</div>
+    <button id="agreeBtn" disabled style="margin-top:1.5rem;">同意して進む</button>
+  </div>
 
-		<div class="form-group vertical">
-			<label>職業</label>
-			<div class="radio-group buttons" id="occupationGroup">
-				<input type="radio" name="occupation" id="job1" value="会社員">
-				<label for="job1">会社員</label>
+  <!-- Main Content -->
+  <div id="mainContent" style="display:none;">
+    <header>
+      <img src="images/logo.jpg" alt="店舗ロゴ" class="logo">
+      <h1>フルコンプ買取用QRコード生成ページ</h1>
+      <p class="subtext">このサイトでは入力された情報を保存しません。</p>
+    </header>
 
-				<input type="radio" name="occupation" id="job2" value="公務員">
-				<label for="job2">公務員</label>
+    <main>
+      <form id="qrForm" autocomplete="on">
+        <div class="form-group horizontal">
+          <div class="input-pair">
+            <label for="lastNameInput">姓</label>
+            <input type="text" id="lastNameInput" name="familyName" placeholder="姓" autocomplete="family-name" />
+          </div>
+          <div class="input-pair">
+            <label for="firstNameInput">名</label>
+            <input type="text" id="firstNameInput" name="givenName" placeholder="名" autocomplete="given-name" />
+          </div>
+        </div>
 
-				<input type="radio" name="occupation" id="job3" value="自営業">
-				<label for="job3">自営業</label>
+        <div class="form-group horizontal">
+          <div class="input-pair">
+            <label for="lastNameKanaInput">姓(フリガナ)</label>
+            <input type="text" id="lastNameKanaInput" name="familyNameKana" placeholder="姓(フリガナ)" pattern="[\u30A0-\u30FF\uFF65-\uFF9F]+" autocomplete="off" inputmode="kana" />
+          </div>
+          <div class="input-pair">
+            <label for="firstNameKanaInput">名(フリガナ)</label>
+            <input type="text" id="firstNameKanaInput" name="givenNameKana" placeholder="名(フリガナ)" pattern="[\u30A0-\u30FF\uFF65-\uFF9F]+" autocomplete="off" inputmode="kana" />
+          </div>
+        </div>
 
-				<input type="radio" name="occupation" id="job4" value="フリーター">
-				<label for="job4">フリーター</label>
+        <div class="form-group vertical">
+          <label for="address1Input">住所</label>
+          <input type="text" id="address1Input" name="addressLevel1" placeholder="都道府県" autocomplete="address-level1" />
+          <input type="text" id="address2Input" name="addressLevel2" placeholder="市区町村・番地・建物名など" autocomplete="address-line1" />
+        </div>
 
-				<input type="radio" name="occupation" id="job5" value="学生">
-				<label for="job5">学生</label>
+        <div class="form-group vertical">
+          <label for="birthdayInput">生年月日<br>
+          <span class="note">（半角数字、2001年4月1日の場合は20010401と入力）</span>
+          </label>
+          <input type="tel" id="birthdayInput" name="birthdate" placeholder="生年月日" inputmode="numeric" pattern="[0-9]{8}" autocomplete="bday" />
+        </div>
 
-				<input type="radio" name="occupation" id="job6" value="その他">
-				<label for="job6">その他</label>
-			</div>
+        <div class="form-group vertical">
+          <label for="phoneInput">電話番号<br>
+          <span class="note">（半角数字で入力）</span>
+          </label>
+          <input type="tel" id="phoneInput" name="phone" placeholder="電話番号" inputmode="numeric" pattern="[\-0-9－]+" autocomplete="tel" />
+        </div>
 
-			<!-- 「その他」選択時のみ表示 -->
-			<input
-				type="text"
-				id="occupationOther"
-				name="occupationOther"
-				placeholder="職業を入力"
-				style="display:none; margin-top:0.8rem;"
-			/>
-		</div>
+        <div class="form-group vertical">
+          <label>職業</label>
+          <div class="radio-group buttons" id="occupationGroup">
+            <input type="radio" name="occupation" id="job1" value="会社員"><label for="job1">会社員</label>
+            <input type="radio" name="occupation" id="job2" value="公務員"><label for="job2">公務員</label>
+            <input type="radio" name="occupation" id="job3" value="自営業"><label for="job3">自営業</label>
+            <input type="radio" name="occupation" id="job4" value="フリーター"><label for="job4">フリーター</label>
+            <input type="radio" name="occupation" id="job5" value="学生"><label for="job5">学生</label>
+            <input type="radio" name="occupation" id="job6" value="その他"><label for="job6">その他</label>
+          </div>
 
+          <input type="text" id="occupationOther" name="occupationOther" placeholder="職業を入力" style="display:none; margin-top:0.8rem;" />
+        </div>
 
-		<button type="submit">QRコード生成</button>
-	</form>
+        <button type="submit">QRコード生成</button>
+      </form>
 
+      <div id="qrcode"></div>
+      <button id="downloadBtn" style="display:none;">画像をダウンロード</button>
+      <div id="qrText" style="display:none; word-break: break-all; margin-top: 1rem;"></div>
+    </main>
 
-	<div id="qrcode"></div>
-	<button id="downloadBtn" style="display:none;">画像をダウンロード</button>
-	<div id="qrText" style="display:none; word-break: break-all; margin-top: 1rem;"></div>
-	
-	</main>
+    <footer style="margin-top: 2rem; font-size: 0.9rem; color: gray;">
+      <p>QRコードはお使いのブラウザ上で生成されます。入力された情報を外部へ保存・送信することはありません。</p>
+      <p>© 2025 / Hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
+    </footer>
+  </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="script.js"></script>
 
-	<footer style="margin-top: 2rem; font-size: 0.9rem; color: gray;">
-		<p>QRコードはお使いのブラウザ上で生成されます。入力された情報を外部へ保存・送信することはありません。</p>
-		<p>© 2025	/ Hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
-	</footer>
+  <script>
+    // Agreement logic
+    const checkbox = document.getElementById("agreeCheck");
+    const agreeBtn = document.getElementById("agreeBtn");
+    const agreement = document.getElementById("agreement");
+    const mainContent = document.getElementById("mainContent");
 
+    checkbox.addEventListener("change", () => {
+      agreeBtn.disabled = !checkbox.checked;
+    });
 
-	<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-	<script src="script.js"></script>
-
-	
+    agreeBtn.addEventListener("click", () => {
+      agreement.style.display = "none";
+      mainContent.style.display = "block";
+      window.scrollTo(0, 0);
+    });
+  </script>
 </body>
 </html>

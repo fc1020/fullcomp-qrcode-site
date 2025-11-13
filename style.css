@@ -184,3 +184,75 @@ footer {
     flex-direction: column;
   }
 }
+
+/* 同意ページ全体 */
+#agreement {
+  text-align: center;
+  max-width: 640px;
+  margin: 4rem auto;
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+/* 見出し */
+#agreement h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* 段落（本文） */
+#agreement p {
+  font-size: 0.8rem;
+  line-height: 1.9;
+  text-align: left;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+/* スクロール可能な同意文 */
+#agreementText {
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0 1.5rem;
+  background: #f9f9f9;
+  text-align: left;
+  line-height: 1.8;
+  font-size: 0.95rem;
+  border-radius: 8px;
+}
+
+/* チェックとボタン */
+#agreement label {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+
+#agreeBtn {
+  background-color: #2a7ae4;
+  color: white;
+  border: none;
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 1.5rem;
+}
+
+#agreeBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#agreeBtn:hover:enabled {
+  background-color: #1f5fb8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
