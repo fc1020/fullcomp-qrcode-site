@@ -157,13 +157,16 @@ button:hover {
 
 /* QRコード */
 #qrcode {
+  display: flex;
   text-align: center;
   margin-top: 1.5rem;
 }
 
 #qrcode canvas {
-  max-width: 100%;
-  height: auto;
+  width: 100%;       /* 表示幅を親要素いっぱいに */
+  max-width: 300px;  /* 小さい画面では最大幅を制限（必要に応じて調整） */
+  height: auto;      /* 縦横比を維持 */
+
 }
 
 /* フッター */
