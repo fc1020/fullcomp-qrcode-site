@@ -156,6 +156,8 @@ button:hover {
 
 /* QRコード */
 #qrcode {
+  max-width: 100%;  /* 親要素の幅を超えないようにする */
+  height: auto;     /* 高さも自動調整 */
   margin-top: 1.5rem;
   display: flex;
   justify-content: center;
