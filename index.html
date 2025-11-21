@@ -19,12 +19,17 @@ document.addEventListener("DOMContentLoaded", () => {
   mainContent.style.display = "none";
 
   // スクロール監視（最後まで読んだらチェック可能に）
-  scrollBox.addEventListener("scroll", () => {
-    const atBottom = scrollBox.scrollTop + scrollBox.clientHeight >= scrollBox.scrollHeight - 5;
-    if (atBottom) {
-      checkbox.disabled = false;
-    }
-  });
+	const scrollNotice = document.getElementById("scrollNotice");
+
+	scrollBox.addEventListener("scroll", () => {
+	const atBottom =
+		scrollBox.scrollTop + scrollBox.clientHeight >= scrollBox.scrollHeight - 5;
+	if (atBottom) {
+		checkbox.disabled = false;
+		scrollNotice.style.visibility = "hidden";
+	}
+	});
+
 
   // チェックボックスがONでボタン有効化
   checkbox.addEventListener("change", () => {
@@ -44,8 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 <body>
 
-  <!-- Agreement Section -->
-  <div id="agreement" style="text-align:center; max-width:640px; margin:4rem auto; background:white; padding:2rem; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,0.1);">
+	<!-- Agreement Section -->
+	<div id="agreement" style="text-align:center; max-width:640px; margin:4rem auto; background:white; padding:2rem; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,0.1);">
+	<img src="images/logo.jpg" alt="店舗ロゴ" class="logo" style="max-width:160px; margin-bottom:1.5rem;">
     <h2>ご利用前のご確認</h2>
     <p style="text-align:center; line-height:1.7;">
       このサイトでは、入力された内容から個人情報を含むQRコードを生成します。<br>
@@ -71,24 +77,29 @@ document.addEventListener("DOMContentLoaded", () => {
 	<br>
 	【注意事項】<br>
 	●買取の際には公的な身分証明書が必要です。マイナンバーカード・運転免許証・学生証・保険証等、公的機関が発行している「氏名・住所・年齢」が確認出来るもので、住所変更の届出が済んでおり、且つ有効期限内のものに限ります（コピー不可）。<br>
-	●18歳未満のお客様は、保護者の承諾と同意欄の記入、電話確認が必要です。予め連絡がとれるかご確認下さい。連絡がとれない場合は、買取をお断り致します。<br>
+	●18歳未満のお客様は、保護者の承諾と同意欄の記入、電話確認が必要です。予め連絡がとれるかご確認下さい。<br>
+	　連絡がとれない場合は、買取をお断り致します。<br>
 	●小学生以下のお客様は保護者の方が同伴の上、保護者の方はご自身の身分証明書をご持参ください。<br>
-	●申込後の買取は当日中の営業時間内のみ可能です。お預かり出来ませんのでご注意下さい。<br>
-	●当日中に査定が行えない場合は、当社規定により切り分けさせて頂く場合がございます。<br>
-	●模倣品、偽造品、海賊品、無線機等品など不正入手した商品は買取をお断り致します。<br>
-	●買取受付の不正入手が発覚した場合、告発機関宛てに通報を行うことがあります。<br>
+	●申込後の買取は当日中の営業時間のみ可能です。お預かり出来ませんのでご注意下さい。<br>
+	　当日中にお戻り頂けない場合は、当社規定により処分させて頂く場合がございます。<br>
+	●模倣品、偽造品、海賊品、盗難紛失品などで不正入手した商品は買取をお断り致します。<br>
+	　買取後に不正入手が発覚した場合、損害賠償請求を行うことがあります。<br>
 	●買取明細レシートの内容に同意して買取が成立した場合、レシートに名前を記入して頂きます。<br>
 	●買取成立後の取り消し、返品、キャンセルは一切お受けできません。<br>
 	</p>
 
 	</div>
 
+	<p id="scrollNotice"
+	style="color:#d00; font-size:0.9rem; margin:0.5rem 0; text-align:center;">
+	※同意事項を最後までスクロールするとチェックできるようになります。
+	</p>
     <label style="display:block; margin-top:1.5rem;">
       <input type="checkbox" id="agreeCheck">
       同意事項を確認し、同意します。
     </label>
 
-    <button id="agreeBtn" disabled style="margin-top:1.5rem;">同意して進む</button>
+    <button id="agreeBtn" disabled style="margin-top:1.5rem;">進む</button>
   </div>
 
   <!-- Main Content -->
