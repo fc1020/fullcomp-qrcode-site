@@ -136,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div class="form-group vertical">
           <label for="address1Input">住所</label>
+		  <span class="note">（建物名・部屋番号まですべて入力）</span>
           <input type="text" id="address1Input" name="addressLevel1" placeholder="都道府県" autocomplete="address-level1" />
           <input type="text" id="address2Input" name="addressLevel2" placeholder="市区町村・番地・建物名など" autocomplete="address-line1" />
         </div>
@@ -149,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div class="form-group vertical">
           <label for="phoneInput">電話番号<br>
-          <span class="note">（半角数字で入力）</span>
+          <span class="note">（ハイフン不要、半角数字で入力）</span>
           </label>
           <input type="tel" id="phoneInput" name="phone" placeholder="電話番号" inputmode="numeric" pattern="[\-0-9－]+" autocomplete="tel" />
         </div>
