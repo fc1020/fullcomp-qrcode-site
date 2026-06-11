@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>フルコンプ公式 QRコード生成サイト</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const agreement = document.getElementById("agreement");
+  const mainContent = document.querySelector("main");
+  const checkbox = document.getElementById("agreeCheck");
+  const button = document.getElementById("agreeBtn");
+  const scrollBox = document.getElementById("agreementText");
+
+  // 最初はメイン非表示
+  mainContent.style.display = "none";
+
+  // スクロール監視（最後まで読んだらチェック可能に）
+	const scrollNotice = document.getElementById("scrollNotice");
+
+	scrollBox.addEventListener("scroll", () => {
+	const atBottom =
+		scrollBox.scrollTop + scrollBox.clientHeight >= scrollBox.scrollHeight - 5;
+	if (atBottom) {
+		checkbox.disabled = false;
+		scrollNotice.style.visibility = "hidden";
+	}
+	});
+
+
+  // チェックボックスがONでボタン有効化
+  checkbox.addEventListener("change", () => {
+    button.disabled = !checkbox.checked;
+  });
+
+  // 同意ボタン押下で同意画面を非表示 → メイン表示
+  button.addEventListener("click", () => {
+    agreement.style.display = "none";
+    mainContent.style.display = "block";
+    window.scrollTo(0, 0);
+  });
+
+  // 最初はチェックできないように無効化
+  checkbox.disabled = true;
+});
+</script>
+<body>
+
+	<!-- Agreement Section -->
+	<div id="agreement" style="text-align:center; max-width:640px; margin:4rem auto; background:white; padding:2rem; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,0.1);">
+	<img src="images/logo.jpg" alt="店舗ロゴ" class="logo" style="max-width:160px; margin-bottom:1.5rem;">
+    <h2>ご利用前のご確認</h2>
+    <p style="text-align:center; line-height:1.7;">
+      このサイトでは、入力された内容から個人情報を含むQRコードを生成します。<br>
+      情報はブラウザ内でのみ処理され、外部へ送信・保存されることはありません。<br>
+	  <br>
+	</p>
+	<h2>予約票について</h2>
+	<p style="text-align:center; line-height:1.7;">
+      このサイトのQRコードを元に、店舗で予約票を印刷します。<br>
+	  上記のご利用前のご確認に加え、予約票の同意事項についてもご確認をお願いします。<br>
+	  <br>
+      以下、予約票より抜粋
+    </p>
+
+<!-- Scrollable Agreement Text -->
+	<div id="agreementText"
+		style="max-height:200px; overflow-y:auto; border:1px solid #ccc; padding:1rem; margin:1rem 0; text-align:left; line-height:1.6; background:#f9f9f9; font-size:0.95rem;">
+	<p>
+	【下記注意事項に、同意頂ける方のみ受付致します】<br>
+	●予約商品のお会計はお預かりした内金でお会計させていただきます。<br>
+	　キャッシュレス払いへの変更は出来ません。<br>
+	●予約権利の譲渡はできません。<br>
+	　予約受付時と商品お渡し時に、身分証でのご本人様確認をさせていただきます。<br>
+	●誠に恐れ入りますが、原則としてお客様都合による、キャンセル及びお取り置き期間の延長は<br>
+	　お受けできません。また、お内金の返金もできかねます。予めご了承ください。<br>
+	　但し、予約価格が変更になった場合は、お会計時に差額をお返しする場合がございます。<br>
+	●メーカーの生産都合による減数・分納により、受付後にご希望数がご用意できないことが<br>
+	　ございます。その場合、減数・キャンセルのご連絡をお電話にてさせて頂く場合がございます。<br>
+	●商品のお受け取りは発売日の開店時間以降となります。営業時間は変更になる場合があります。<br>
+	　営業時間の変更によるキャンセルは原則お受けできません。<br>
+	</p>
+
+	</div>
+
+	<p id="scrollNotice"
+	style="color:#d00; font-size:0.9rem; margin:0.5rem 0; text-align:center;">
+	※同意事項を最後までスクロールするとチェックできるようになります。
+	</p>
+    <label style="display:block; margin-top:1.5rem;">
+      <input type="checkbox" id="agreeCheck">
+      同意事項を確認し、同意します。
+    </label>
+
+    <button id="agreeBtn" disabled style="margin-top:1.5rem;">進む</button>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent" style="display:none;">
+    <header>
+      <img src="images/logo.jpg" alt="店舗ロゴ" class="logo">
+      <h1>フルコンプ予約用QRコード生成ページ</h1>
+      <p class="subtext">このサイトでは入力された情報を保存しません。</p>
+    </header>
+
+    <main>
+      <form id="qrForm" autocomplete="on">
+        <div class="form-group horizontal">
+          <div class="input-pair">
+            <label for="lastNameInput">姓</label>
+            <input type="text" id="lastNameInput" name="familyName" placeholder="姓" autocomplete="family-name" />
+          </div>
+          <div class="input-pair">
+            <label for="firstNameInput">名</label>
+            <input type="text" id="firstNameInput" name="givenName" placeholder="名" autocomplete="given-name" />
+          </div>
+        </div>
+
+        <div class="form-group horizontal">
+          <div class="input-pair">
+            <label for="lastNameKanaInput">姓(フリガナ)</label>
+            <input type="text" id="lastNameKanaInput" name="familyNameKana" placeholder="姓(フリガナ)" pattern="[\u30A0-\u30FF\uFF65-\uFF9F]+" autocomplete="off" inputmode="kana" />
+          </div>
+          <div class="input-pair">
+            <label for="firstNameKanaInput">名(フリガナ)</label>
+            <input type="text" id="firstNameKanaInput" name="givenNameKana" placeholder="名(フリガナ)" pattern="[\u30A0-\u30FF\uFF65-\uFF9F]+" autocomplete="off" inputmode="kana" />
+          </div>
+        </div>
+
+        <div class="form-group vertical">
+          <label for="address1Input">住所</label>
+		  
+		    <!-- ▼ 都道府県 -->
+			<span class="note">都道府県</span>
+			<input list="pref-options" id="address1Input" name="addressLevel1"
+					autocomplete="address-level1" placeholder="都道府県を入力または選択" />
+
+			<datalist id="pref-options">
+				<option value="北海道">
+				<option value="青森県">
+				<option value="岩手県">
+				<option value="宮城県">
+				<option value="秋田県">
+				<option value="山形県">
+				<option value="福島県">
+				<option value="茨城県">
+				<option value="栃木県">
+				<option value="群馬県">
+				<option value="埼玉県">
+				<option value="千葉県">
+				<option value="東京都">
+				<option value="神奈川県">
+				<option value="新潟県">
+				<option value="富山県">
+				<option value="石川県">
+				<option value="福井県">
+				<option value="山梨県">
+				<option value="長野県">
+				<option value="岐阜県">
+				<option value="静岡県">
+				<option value="愛知県">
+				<option value="三重県">
+				<option value="滋賀県">
+				<option value="京都府">
+				<option value="大阪府">
+				<option value="兵庫県">
+				<option value="奈良県">
+				<option value="和歌山県">
+				<option value="鳥取県">
+				<option value="島根県">
+				<option value="岡山県">
+				<option value="広島県">
+				<option value="山口県">
+				<option value="徳島県">
+				<option value="香川県">
+				<option value="愛媛県">
+				<option value="高知県">
+				<option value="福岡県">
+				<option value="佐賀県">
+				<option value="長崎県">
+				<option value="熊本県">
+				<option value="大分県">
+				<option value="宮崎県">
+				<option value="鹿児島県">
+				<option value="沖縄県">
+			</datalist>
+
+			<!-- ▼ それ以下の住所 -->
+			 <span class="note">市区町村・番地・建物名</span>
+			<input type="text" id="address2Input" name="addressLevel2" autocomplete="address-line1" placeholder="市区町村・番地・建物名など" />
+
+        </div>
+
+        <div class="form-group vertical">
+          <label for="phoneInput">電話番号<br>
+          <span class="note">（ハイフン不要、半角数字で入力）</span>
+          </label>
+          <input type="tel" id="phoneInput" name="phone" placeholder="電話番号" inputmode="numeric" pattern="[\-0-9－]+" autocomplete="tel" />
+        </div>
+
+        <button type="submit" value="yoyaku">QRコード生成</button>
+
+      </form>
+
+      <div id="qrcode"></div>
+      <button id="downloadBtn" style="display:none;">画像をダウンロード</button>
+      <div id="qrText" style="display:none; word-break: break-all; margin-top: 1rem;"></div>
+	  <p id="afterQrMessage" align="center" style="display:none; margin-top:1rem; font-weight:bold;">
+			店内スタッフに「発売日・商品タイトル」をお伝えの上、<br>
+			こちらのQRコードをご提示ください。<br>
+		</p>
+    </main>
+
+    <footer style="margin-top: 2rem; font-size: 0.9rem; color: gray;">
+      <p>QRコードはお使いのブラウザ上で生成されます。入力された情報を外部へ保存・送信することはありません。</p>
+      <p>© 2026 / Hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    // Agreement logic
+    const checkbox = document.getElementById("agreeCheck");
+    const agreeBtn = document.getElementById("agreeBtn");
+    const agreement = document.getElementById("agreement");
+    const mainContent = document.getElementById("mainContent");
+
+    checkbox.addEventListener("change", () => {
+      agreeBtn.disabled = !checkbox.checked;
+    });
+
+    agreeBtn.addEventListener("click", () => {
+      agreement.style.display = "none";
+      mainContent.style.display = "block";
+      window.scrollTo(0, 0);
+    });
+  </script>
+</body>
+</html>
